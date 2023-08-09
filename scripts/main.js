@@ -12,6 +12,34 @@ const h2 = document.querySelector("h2")
 const filterType = document.querySelector("#v-type")
 
 // ===== FUNCTIONS ===== //
+const displayDetails = function(data) {
+    // console.log(villagerDiv, data.birthday_month, data.birthday_day)
+    h2.style.display = "none"
+    // create div
+    let vDetails = document.createElement("div")
+    // create phrase p tag
+    let vPhrase = document.createElement("p")
+    vPhrase.innerText = "Phrase: " + data.phrase
+    // create quote p tag
+    let vQuote = document.createElement("p")
+    vQuote.innerText = data.quote
+    vQuote.style.fontStyle = "italic"
+    // create personality p tag
+    let vPersonality = document.createElement("p")
+    vPersonality.innerText = "Personality: " + data.personality
+    // create birthday p tag
+    let vBday = document.createElement("p")
+    vBday.innerText = "Birthday: " + data.birthday_month + " " + data.birthday_day + ",\n" + data.sign
+    // append created elements
+    vDetails.append(vQuote)
+    vDetails.append(vPhrase)
+    vDetails.append(vPersonality)
+    vDetails.append(vBday)
+    // append details to villager-div
+    villagerDiv.append(vDetails)
+    villagerDiv.classList.add("v-details")
+}
+
 const displayVillagers = function(data, type) {
     // set heading
     h2.style.display = "block"
@@ -20,14 +48,16 @@ const displayVillagers = function(data, type) {
     while (villagerDiv.lastElementChild) {
         villagerDiv.removeChild(villagerDiv.lastElementChild);
     }
+    // remove v-details classlist
+    villagerDiv.classList.remove("v-details")
     // loop over data provided
     data.forEach(villager => {
         //create div
         let vEl = document.createElement("button")
         vEl.classList.add("v_card")
-        // create name & personality p tag
+        // create name p tag
         let vName =  document.createElement("p")
-        vName.innerText = villager.name + ", personality: " + villager.personality
+        vName.innerText = villager.name 
         // create img
         let vImg = document.createElement("img")
         vImg.src = villager.image_url
@@ -43,6 +73,7 @@ const displayVillagers = function(data, type) {
         vEl.addEventListener("click", function(){
             console.log("villager: ", villager)
             displayVillagers([villager], villager.name)
+            displayDetails(villager)
         })
     })
 }
