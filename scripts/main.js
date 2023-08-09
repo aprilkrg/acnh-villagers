@@ -7,6 +7,8 @@ xhr.responseType = "json"
 const displayBtn = document.querySelector("#display")
 const newHorizonsBtn = document.querySelector("#new-horizons")
 const lazyBtn = document.querySelector("#lazy")
+const bdayBtn = document.querySelector("#bday")
+
 const villagerDiv = document.querySelector("#villager-div")
 const h2 = document.querySelector("h2")
 const filterType = document.querySelector("#v-type")
@@ -113,6 +115,52 @@ newHorizonsBtn.addEventListener("click", () => {
 lazyBtn.addEventListener("click", () => {
     const lazies = villagerdata.filter((v) => v.personality === "Lazy")
     displayVillagers(lazies, "Lazy")
+})
+bdayBtn.addEventListener("click", () => {
+    const currentMonth = new Date().getMonth() 
+    let birthMonth = ""
+    switch(currentMonth) {
+        case 0:
+            birthMonth = "January"
+            break;
+        case 1:
+            birthMonth = "February"
+            break;
+        case 2:
+            birthMonth = "March"
+            break;
+        case 3:
+            birthMonth = "April"
+            break;
+        case 4:
+            birthMonth = "May"
+            break;
+        case 5:
+            birthMonth = "June"
+            break;
+        case 6:
+            birthMonth = "July"
+            break;
+        case 7:
+            birthMonth = "August"
+            break;
+        case 8:
+            birthMonth = "September"
+            break;
+        case 9:
+            birthMonth = "October"
+            break;
+        case 10:
+            birthMonth = "November"
+            break;
+        case 11:
+            birthMonth = "December"
+            break;
+        default:
+            console.log("err")
+    }
+    const bdays = villagerdata.filter((v) => v.birthday_month === birthMonth)
+    displayVillagers(bdays, "Birth Month")
 })
 
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
