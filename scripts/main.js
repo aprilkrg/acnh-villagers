@@ -1,6 +1,5 @@
 // ===== CONFIG ===== //
 const xhr = new XMLHttpRequest()
-// xmlhttp help from https://javascript.info/xmlhttprequest
 xhr.withCredentials = false
 xhr.responseType = "json"
 
@@ -16,22 +15,25 @@ const displayVillagers = function(data) {
     data.forEach(villager => {
         console.log("villager:", villager)
         //create div
-        let vEl = document.createElement("div")
-        // create name p tag
+        let vEl = document.createElement("button")
+        vEl.classList.add("v_card")
+        // create name & personality p tag
         let vName =  document.createElement("p")
         vName.innerText = villager.name + ", personality: " + villager.personality
         // create img
         let vImg = document.createElement("img")
-        // vImg.src = 'https://placekitten.com/200/300'
         vImg.src = villager.image_url
+        vImg.classList.add("v_img")
+
         // append created elements
         vEl.append(vName)
         vEl.append(vImg)
         // append el to div
-        villagerDiv.appendChild(vEl)
+        villagerDiv.append(vEl)
     })
 }
 
+// xmlhttp help from https://javascript.info/xmlhttprequest
 const xmlRequest = function() {
     xhr.open("GET", "https://api.nookipedia.com/villagers?api_key=d659c807-1aa9-4c06-b204-1faf7ccfc4da")
     xhr.send()
@@ -58,6 +60,6 @@ const xmlRequest = function() {
 // ===== EVENT LISTENERS ===== // 
 // displayBtn.addEventListener("click", xmlRequest) // get data from API request 
 displayBtn.addEventListener("click", ()=> { // get data from json file
-    console.log("data", villagerdata)
+    // console.log("data", villagerdata)
     displayVillagers(villagerdata)
 })

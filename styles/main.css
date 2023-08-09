@@ -5,3 +5,12 @@
 body{
     background-color: rgb(48, 48, 48);
 }
+.v_card{
+    background-color: black;
+    color: whitesmoke;
+}
+.v_img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
