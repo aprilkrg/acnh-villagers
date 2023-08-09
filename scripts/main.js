@@ -117,43 +117,56 @@ lazyBtn.addEventListener("click", () => {
     displayVillagers(lazies, "Lazy")
 })
 bdayBtn.addEventListener("click", () => {
-    console.log("testing dates")
-    const month = new Date().getMonth() + 1
-    // console.log(month)
-    switch(month) {
+    const currentMonth = new Date().getMonth() 
+    let birthMonth = ""
+    switch(currentMonth) {
+        case 0:
+            birthMonth = "January"
+            break;
         case 1:
-            console.log("January")
+            birthMonth = "February"
             break;
         case 2:
-            console.log("February")
+            birthMonth = "March"
             break;
         case 3:
-            console.log("March")
+            birthMonth = "April"
             break;
         case 4:
-            console.log("April")
+            birthMonth = "May"
             break;
         case 5:
-            console.log("May")
+            birthMonth = "June"
             break;
-        case :
-            console.log("")
+        case 6:
+            birthMonth = "July"
             break;
         case 7:
-            console.log("July")
+            birthMonth = "August"
             break;
         case 8:
-            console.log("August")
+            birthMonth = "September"
+            break;
+        case 9:
+            birthMonth = "October"
+            break;
+        case 10:
+            birthMonth = "November"
+            break;
+        case 11:
+            birthMonth = "December"
             break;
         default:
             console.log("err")
     }
+    const bdays = villagerdata.filter((v) => v.birthday_month === birthMonth)
+    displayVillagers(bdays, "Birth Month")
 })
 
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMCONTENTLOADED")
-    // displayVillagers(villagerdata, "All")
+    displayVillagers(villagerdata, "All")
     villagerDiv.style.display = "none"
     h2.style.display = "none"
 })
