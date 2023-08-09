@@ -4,8 +4,9 @@
 const displayVillagers = function(data) {
     console.log("VILLAGERS DATA", data)
     data.forEach(villager => {
-        console.log("villager:", villager.name)
-        // let vEl = document.createElement("p")
+        // console.log("villager:", villager.name)
+        let vEl = document.createElement("p")
+        console.log("innertext", vEl.innerText)
         // vEl.innerText(villager.name)
         // document.appendChild(vEl)
     })
