@@ -5,15 +5,23 @@ xhr.responseType = "json"
 
 // ===== DOM VARIABLES ===== //
 const displayBtn = document.querySelector("#display")
+const newHorizonsBtn = document.querySelector("#new-horizons")
+const lazyBtn = document.querySelector("#lazy")
 const villagerDiv = document.querySelector("#villager-div")
 const h2 = document.querySelector("h2")
+const filterType = document.querySelector("#v-type")
 
 // ===== FUNCTIONS ===== //
-const displayVillagers = function(data) {
+const displayVillagers = function(data, type) {
     // console.log("VILLAGERS DATA", data)
     h2.style.display = "block"
+    filterType.innerText = type
+    // console.log("LAST CHILd", villagerDiv.lastElementChild)
+    while (villagerDiv.lastElementChild) {
+        villagerDiv.removeChild(villagerDiv.lastElementChild);
+    }
+
     data.forEach(villager => {
-        console.log("villager:", villager)
         //create div
         let vEl = document.createElement("button")
         vEl.classList.add("v_card")
@@ -30,6 +38,11 @@ const displayVillagers = function(data) {
         vEl.append(vImg)
         // append el to div
         villagerDiv.append(vEl)
+
+        // set event listener
+        vEl.addEventListener("click", function(){
+            console.log("villager: ", villager)
+        })
     })
 }
 
@@ -59,7 +72,16 @@ const xmlRequest = function() {
 
 // ===== EVENT LISTENERS ===== // 
 // displayBtn.addEventListener("click", xmlRequest) // get data from API request 
-displayBtn.addEventListener("click", ()=> { // get data from json file
+displayBtn.addEventListener("click", () => { // get data from json file
     // console.log("data", villagerdata)
-    displayVillagers(villagerdata)
+    displayVillagers(villagerdata, "All")
+})
+newHorizonsBtn.addEventListener("click", () => {
+    const nhData = villagerdata.filter((v) => v.appearances.includes("NH"))
+    // console.log("nh data", nhData)
+    displayVillagers(nhData, "New Horizons")
+})
+lazyBtn.addEventListener("click", () => {
+    const lazies = villagerdata.filter((v) => v.personality === "Lazy")
+    displayVillagers(lazies, "Lazy")
 })
