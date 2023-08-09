@@ -115,9 +115,9 @@ lazyBtn.addEventListener("click", () => {
 })
 
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
-// document.addEventListener("DOMContentLoaded", () => {
-//     displayVillagers(villagerdata, "All")
-//     villagerDiv.style.display = "none"
-//     h2.style.display = "none"
+document.addEventListener("DOMContentLoaded", () => {
+    displayVillagers(villagerdata, "All")
+    villagerDiv.style.display = "none"
+    h2.style.display = "none"
 
-// })
+})
