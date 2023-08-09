@@ -40,6 +40,7 @@ const displayDetails = function(data) {
 }
 
 const displayVillagers = function(data, type) {
+    villagerDiv.style.display = "block"
     // set heading
     h2.style.display = "block"
     filterType.innerText = type
@@ -116,8 +117,8 @@ lazyBtn.addEventListener("click", () => {
 
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
 document.addEventListener("DOMContentLoaded", () => {
-    displayVillagers(villagerdata, "All")
-    villagerDiv.style.display = "none"
-    h2.style.display = "none"
-
+    console.log("DOMCONTENTLOADED")
+    // displayVillagers(villagerdata, "All")
+    // villagerDiv.style.display = "none"
+    // h2.style.display = "none"
 })
