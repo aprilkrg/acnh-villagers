@@ -42,6 +42,7 @@ const displayVillagers = function(data, type) {
         // set event listener
         vEl.addEventListener("click", function(){
             console.log("villager: ", villager)
+            displayVillagers([villager], villager.name)
         })
     })
 }
