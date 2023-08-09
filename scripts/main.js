@@ -1,20 +1,37 @@
-// console.log("good morning developers") // connection check
+// ===== CONFIG ===== //
+const xhr = new XMLHttpRequest()
 // xmlhttp help from https://javascript.info/xmlhttprequest
+xhr.withCredentials = false
+xhr.responseType = "json"
 
+// ===== DOM VARIABLES ===== //
+const displayBtn = document.querySelector("#display")
+const villagerDiv = document.querySelector("#villager-div")
+const h2 = document.querySelector("h2")
+
+// ===== FUNCTIONS ===== //
 const displayVillagers = function(data) {
-    console.log("VILLAGERS DATA", data)
+    // console.log("VILLAGERS DATA", data)
+    h2.style.display = "block"
     data.forEach(villager => {
-        // console.log("villager:", villager.name)
-        let vEl = document.createElement("p")
-        console.log("innertext", vEl.innerText)
-        // vEl.innerText(villager.name)
-        // document.appendChild(vEl)
+        console.log("villager:", villager)
+        //create div
+        let vEl = document.createElement("div")
+        // create name p tag
+        let vName =  document.createElement("p")
+        vName.innerText = villager.name + ", personality: " + villager.personality
+        // create img
+        let vImg = document.createElement("img")
+        // vImg.src = 'https://placekitten.com/200/300'
+        vImg.src = villager.image_url
+        // append created elements
+        vEl.append(vName)
+        vEl.append(vImg)
+        // append el to div
+        villagerDiv.appendChild(vEl)
     })
 }
 
-const xhr = new XMLHttpRequest()
-xhr.withCredentials = false
-xhr.responseType = "json"
 const xmlRequest = function() {
     xhr.open("GET", "https://api.nookipedia.com/villagers?api_key=d659c807-1aa9-4c06-b204-1faf7ccfc4da")
     xhr.send()
@@ -38,6 +55,9 @@ const xmlRequest = function() {
     }
 }
 
-
-const displayBtn = document.querySelector("#display")
-displayBtn.addEventListener("click", xmlRequest)
+// ===== EVENT LISTENERS ===== // 
+// displayBtn.addEventListener("click", xmlRequest) // get data from API request 
+displayBtn.addEventListener("click", ()=> { // get data from json file
+    console.log("data", villagerdata)
+    displayVillagers(villagerdata)
+})

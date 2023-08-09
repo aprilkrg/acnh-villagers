@@ -1,4 +1,4 @@
-[
+villagerdata = [
     {
       "name": "Ace",
       "url": "https://nookipedia.com/wiki/Ace",
@@ -14263,4 +14263,4 @@
         "PC"
       ]
     }
-  ]
+]
