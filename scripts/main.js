@@ -9,6 +9,8 @@ const newHorizonsBtn = document.querySelector("#new-horizons")
 const lazyBtn = document.querySelector("#lazy")
 const bdayBtn = document.querySelector("#bday")
 
+const search = document.querySelector("#search")
+console.log(search)
 const villagerDiv = document.querySelector("#villager-div")
 const h2 = document.querySelector("h2")
 const filterType = document.querySelector("#v-type")
@@ -162,11 +164,20 @@ bdayBtn.addEventListener("click", () => {
     const bdays = villagerdata.filter((v) => v.birthday_month === birthMonth)
     displayVillagers(bdays, "Birth Month")
 })
-
+search.addEventListener("keyup", (event) => {
+    // console.log("click")
+    console.log(event.target.value)
+    const filtered = villagerdata.filter((v) => {
+        let name = v.name.toLowerCase()
+        return name.includes(event.target.value)
+    })
+    displayVillagers(filtered, event.target.value === "" ? "All" : "Searched")
+    
+})
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
 document.addEventListener("DOMContentLoaded", () => {
-    displayVillagers(villagerdata, "All")
+    // displayVillagers(villagerdata, "All")
     villagerDiv.style.display = "none"
     h2.style.display = "none"
-    console.log("DOMCONTENTLOADED")
+    // console.log("DOMCONTENTLOADED")
 })
