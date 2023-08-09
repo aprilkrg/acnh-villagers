@@ -7,6 +7,8 @@ xhr.responseType = "json"
 const displayBtn = document.querySelector("#display")
 const newHorizonsBtn = document.querySelector("#new-horizons")
 const lazyBtn = document.querySelector("#lazy")
+const bdayBtn = document.querySelector("#bday")
+
 const villagerDiv = document.querySelector("#villager-div")
 const h2 = document.querySelector("h2")
 const filterType = document.querySelector("#v-type")
@@ -114,11 +116,44 @@ lazyBtn.addEventListener("click", () => {
     const lazies = villagerdata.filter((v) => v.personality === "Lazy")
     displayVillagers(lazies, "Lazy")
 })
+bdayBtn.addEventListener("click", () => {
+    console.log("testing dates")
+    const month = new Date().getMonth() + 1
+    // console.log(month)
+    switch(month) {
+        case 1:
+            console.log("January")
+            break;
+        case 2:
+            console.log("February")
+            break;
+        case 3:
+            console.log("March")
+            break;
+        case 4:
+            console.log("April")
+            break;
+        case 5:
+            console.log("May")
+            break;
+        case :
+            console.log("")
+            break;
+        case 7:
+            console.log("July")
+            break;
+        case 8:
+            console.log("August")
+            break;
+        default:
+            console.log("err")
+    }
+})
 
 // loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMCONTENTLOADED")
-    displayVillagers(villagerdata, "All")
+    // displayVillagers(villagerdata, "All")
     villagerDiv.style.display = "none"
     h2.style.display = "none"
 })
