@@ -4,10 +4,23 @@
 }
 body{
     background-color: rgb(48, 48, 48);
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
 }
 .v_card{
-    background-color: black;
+    background-color: rgba(37, 35, 35, .8);
     color: whitesmoke;
+    margin: 5px;
+    border: 0;
+    border-radius: 5px;
+}
+.v_card:hover{
+    background-color: rgb(32, 30, 30);
+
 }
 .v_img{
     width: 200px;

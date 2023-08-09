@@ -13,14 +13,14 @@ const filterType = document.querySelector("#v-type")
 
 // ===== FUNCTIONS ===== //
 const displayVillagers = function(data, type) {
-    // console.log("VILLAGERS DATA", data)
+    // set heading
     h2.style.display = "block"
     filterType.innerText = type
-    // console.log("LAST CHILd", villagerDiv.lastElementChild)
+    // remove all btns to make a clean slate
     while (villagerDiv.lastElementChild) {
         villagerDiv.removeChild(villagerDiv.lastElementChild);
     }
-
+    // loop over data provided
     data.forEach(villager => {
         //create div
         let vEl = document.createElement("button")
@@ -73,12 +73,10 @@ const xmlRequest = function() {
 // ===== EVENT LISTENERS ===== // 
 // displayBtn.addEventListener("click", xmlRequest) // get data from API request 
 displayBtn.addEventListener("click", () => { // get data from json file
-    // console.log("data", villagerdata)
     displayVillagers(villagerdata, "All")
 })
 newHorizonsBtn.addEventListener("click", () => {
     const nhData = villagerdata.filter((v) => v.appearances.includes("NH"))
-    // console.log("nh data", nhData)
     displayVillagers(nhData, "New Horizons")
 })
 lazyBtn.addEventListener("click", () => {
