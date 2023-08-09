@@ -13,13 +13,15 @@ const filterType = document.querySelector("#v-type")
 
 // ===== FUNCTIONS ===== //
 const displayDetails = function(data) {
-    // console.log(villagerDiv, data.birthday_month, data.birthday_day)
     h2.style.display = "none"
     // create div
     let vDetails = document.createElement("div")
+    vDetails.style.display = "flex"
+    vDetails.style.flexDirection = "column-reverse"
+
     // create phrase p tag
     let vPhrase = document.createElement("p")
-    vPhrase.innerText = "Phrase: " + data.phrase
+    vPhrase.innerText = "Phrase: '" + data.phrase + "'"
     // create quote p tag
     let vQuote = document.createElement("p")
     vQuote.innerText = data.quote
@@ -29,12 +31,9 @@ const displayDetails = function(data) {
     vPersonality.innerText = "Personality: " + data.personality
     // create birthday p tag
     let vBday = document.createElement("p")
-    vBday.innerText = "Birthday: " + data.birthday_month + " " + data.birthday_day + ",\n" + data.sign
+    vBday.innerText = "Birthday: " + data.birthday_month + " " + data.birthday_day + ", " + data.sign
     // append created elements
-    vDetails.append(vQuote)
-    vDetails.append(vPhrase)
-    vDetails.append(vPersonality)
-    vDetails.append(vBday)
+    vDetails.append(vQuote, vPhrase, vPersonality, vBday)
     // append details to villager-div
     villagerDiv.append(vDetails)
     villagerDiv.classList.add("v-details")
@@ -64,15 +63,14 @@ const displayVillagers = function(data, type) {
         vImg.classList.add("v_img")
 
         // append created elements
-        vEl.append(vName)
-        vEl.append(vImg)
+        vEl.append(vName, vImg)
         // append el to div
         villagerDiv.append(vEl)
 
         // set event listener
         vEl.addEventListener("click", function(){
             console.log("villager: ", villager)
-            displayVillagers([villager], villager.name)
+            displayVillagers([villager], "")
             displayDetails(villager)
         })
     })
@@ -115,3 +113,11 @@ lazyBtn.addEventListener("click", () => {
     const lazies = villagerdata.filter((v) => v.personality === "Lazy")
     displayVillagers(lazies, "Lazy")
 })
+
+// loading images is slow, could i speed it up by invoking the display villager func at the end of the file and setting display to hidden?
+// document.addEventListener("DOMContentLoaded", () => {
+//     displayVillagers(villagerdata, "All")
+//     villagerDiv.style.display = "none"
+//     h2.style.display = "none"
+
+// })
